@@ -14,6 +14,26 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.get('/create', function(req, res, next) {
+    res.render('productCreate', { title: "Create Product" });
+});
+
+router.post('/create', function(req, res, next) {
+    var db = req.con;
+    var sql = {
+        ProductName: req.body.product_name,
+        Price: req.body.product_price
+    };
+    res.redirect('/products');
+    db.query('INSERT INTO product SET ?', sql, function(err, rows) {
+        if (err) {
+            console.log(err);
+        }
+    });
+    res.setHeader('Content-Type', 'application/json');
+    res.redirect('/products');
+});
+
 
 router.get('/edit', function(req, res, next) {
     var db = req.con;
