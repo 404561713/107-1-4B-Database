@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product - List</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Options</th>
+            </thead>
+            <tbody>
+                <% for ( var i = 0 ; i < data.length ; i++){ %>
+                <tr>
+                    <td>
+                        <%= data[i].ProductID  %>
+                    </td>
+                    <td>
+                        <%= data[i].ProductName  %>
+                    </td>
+                    <td>
+                        <%= data[i].Price  %>
+                    </td>
+                    <td>
+                        <a href="products/edit?id=<%= data[i].ProductID %>" class="btn btn-success">Edit</a>
+                        <a href="products/delete?id=<%= data[i].ProductID %>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <a href="products/create" class="btn btn-primary">Create</a>
+    </div>
+</body>
+<script>
+    var create_btn = document.getElementById("create");
+    var edit_btns = document.getElementsByClassName("edit-btn");
+    var delete_btns = document.getElementsByClassName("delete-btn");
+
+    
+</script>
+</html>

@@ -24,14 +24,13 @@ router.post('/create', function(req, res, next) {
         ProductName: req.body.product_name,
         Price: req.body.product_price
     };
-    res.redirect('/products');
     db.query('INSERT INTO product SET ?', sql, function(err, rows) {
         if (err) {
             console.log(err);
         }
+        res.setHeader('Content-Type', 'application/json');
+        res.redirect('/products');
     });
-    res.setHeader('Content-Type', 'application/json');
-    res.redirect('/products');
 });
 
 
@@ -57,14 +56,13 @@ router.post('/edit', function(req, res, next) {
         Price: req.body.product_price
     };
     console.log(sql);
-    res.redirect('/products');
     db.query('UPDATE product SET ? WHERE ProductID = ?', [sql, id], function(err, rows) {
         if (err) {
             console.log(err);
         }
+        res.setHeader('Content-Type', 'application/json');
+        res.redirect('/products');
     });
-    res.setHeader('Content-Type', 'application/json');
-    res.redirect('/products');
 });
 
 router.get('/delete', function(req, res, next) {
